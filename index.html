@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noites Tranquilas — o app da Mamãe e Bebê para as madrugadas</title>
+<meta name="description" content="Às 3h da manhã você não precisa adivinhar. O Noites Tranquilas te diz o que fazer quando o bebê acorda e guarda mamadas, sonecas, diário e vacinas num só lugar.">
+<meta name="theme-color" content="#1B1D33">
+<meta property="og:title" content="Noites Tranquilas — o app da Mamãe e Bebê">
+<meta property="og:description" content="O que fazer quando o bebê acorda de madrugada, passo a passo. E a rotina dele toda num só lugar.">
+<meta property="og:image" content="assets/tela-madrugada-faca-agora.webp">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Poppins:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441497808370525');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=441497808370525&ev=PageView&noscript=1" alt=""></noscript>
+<!-- Fim Meta Pixel -->
+
+<style>
+:root{
+  --laranja:#F95204; --laranja2:#FA870D; --pessego:#FDBE93; --pessego-claro:#FFD6BA;
+  --creme:#FFF8F1; --creme2:#FFEEDF; --borda:#F4E1D2;
+  --madrugada:#1B1D33; --madrugada2:#262947; --noite:#2D3052; --noite3:#4A3F63;
+  --rosa:#E5395B; --lilas:#6366F1;
+  --texto:#3B2A20; --texto2:#6E5A4E; --lua:#FFF0D2;
+  --raio:22px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,system-ui,sans-serif;color:var(--texto);background:var(--creme);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:Lora,Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(30px,6.4vw,46px)}
+h1 em,h2 em,h3 em{font-style:italic;color:var(--laranja)}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+.estreito{max-width:760px;margin-left:auto;margin-right:auto}
+section{padding:72px 0}
+.selo{display:inline-block;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--laranja);margin-bottom:14px}
+.lead{font-size:clamp(17px,2.4vw,20px);color:var(--texto2);margin-top:16px}
+.centro{text-align:center}
+.escuro{background:radial-gradient(120% 80% at 80% 0%,#33365C 0%,var(--madrugada) 60%);color:#F3EEFA;position:relative;overflow:hidden}
+.escuro h1 em,.escuro h2 em,.escuro h3 em{color:var(--pessego)}
+.escuro .selo{color:var(--pessego)}
+.escuro .lead{color:#C9C3DE}
+.estrela{position:absolute;border-radius:50%;background:var(--lua);opacity:.7;animation:pisca 4s ease-in-out infinite}
+@keyframes pisca{50%{opacity:.15}}
+
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,var(--laranja),var(--laranja2));color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:19px 30px;border-radius:60px;box-shadow:0 12px 30px rgba(249,82,4,.38);transition:transform .2s,box-shadow .2s;text-align:center;line-height:1.25;border:0;cursor:pointer;font-family:inherit}
+.cta:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(249,82,4,.5)}
+.cta.pulsa{animation:pulsa 2.6s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 12px 30px rgba(249,82,4,.38),0 0 0 10px rgba(249,82,4,.13)}}
+.cta-info{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;margin-top:14px;color:var(--texto2)}
+.escuro .cta-info{color:#C9C3DE}
+
+/* topo */
+.aviso{background:var(--laranja);color:#fff;font-size:13px;font-weight:500;text-align:center;padding:8px 12px}
+header{position:sticky;top:0;z-index:40;background:rgba(255,248,241,.93);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(249,82,4,.1)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:10px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto)}
+.marca img{width:46px;height:46px}
+.marca b{font-family:Lora;font-size:19px;font-weight:600;line-height:1;display:block}
+.marca small{display:block;font-size:11px;color:var(--texto2);margin-top:3px}
+.btn-head{font-size:14px;font-weight:600;color:#fff;background:var(--madrugada);padding:10px 18px;border-radius:40px;text-decoration:none;white-space:nowrap}
+
+/* celular */
+.cel{position:relative;border-radius:34px;background:#0E0F1C;padding:8px;box-shadow:0 30px 60px rgba(10,10,30,.45),0 0 0 1.5px rgba(255,255,255,.08) inset}
+.cel img{border-radius:27px;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top}
+.cel::before{content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);width:30%;height:16px;background:#0E0F1C;border-radius:20px;z-index:2}
+
+/* HERO */
+.hero{padding:40px 0 76px}
+.hero .wrap{display:grid;gap:44px;align-items:center}
+.hora{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(253,190,147,.3);border-radius:40px;padding:7px 16px 7px 8px;font-size:14px;color:#FFE3C8;margin-bottom:22px}
+.hora b{font-family:Lora;font-size:17px;background:var(--pessego);color:var(--madrugada);border-radius:30px;padding:2px 11px}
+.hero h1{font-size:clamp(34px,8.4vw,62px)}
+.hero .lead b{color:#fff;font-weight:600}
+.hero .cta{margin-top:30px;width:100%}
+.hero-visual{position:relative;max-width:420px;width:100%;margin:0 auto;height:560px}
+.hero-visual .cel.tras{position:absolute;left:0;top:40px;width:56%;transform:rotate(-7deg);opacity:.9}
+.hero-visual .cel.frente{position:absolute;right:0;top:0;width:64%;transform:rotate(3deg)}
+.balao{position:absolute;background:#fff;color:var(--texto);border-radius:18px;padding:12px 16px;font-size:13.5px;line-height:1.4;box-shadow:0 18px 40px rgba(0,0,0,.35);animation:flutua 6s ease-in-out infinite;z-index:3}
+.balao b{display:block;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--laranja)}
+.balao.b1{left:-4px;bottom:40px;width:62%}
+.balao.b2{right:-6px;top:56%;width:48%;animation-delay:-3s;background:var(--rosa);color:#fff}
+.balao.b2 b{color:#FFE1E7}
+@keyframes flutua{50%{translate:0 -8px}}
+
+/* PROBLEMA */
+.busca{max-width:560px;margin:34px auto 0;background:#fff;border-radius:999px;border:2px solid var(--borda);display:flex;align-items:center;gap:12px;padding:14px 20px;box-shadow:0 14px 34px rgba(59,42,32,.08);min-height:62px}
+.busca svg{flex:none}
+.busca span{font-size:16px;color:var(--texto);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.busca span::after{content:"";display:inline-block;width:2px;height:20px;background:var(--laranja);margin-left:2px;vertical-align:-4px;animation:cursor 1s steps(1) infinite}
+@keyframes cursor{50%{opacity:0}}
+.busca-legenda{text-align:center;font-size:13.5px;color:var(--texto2);margin-top:12px}
+.dores{margin-top:44px;display:grid;gap:14px}
+.dor{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--borda);border-radius:20px;padding:18px 20px}
+.dor .ic{flex:none;width:46px;height:46px;border-radius:14px;background:var(--creme2);display:grid;place-items:center;font-size:23px}
+.dor b{display:block;font-size:16.5px;line-height:1.35}
+.dor p{font-size:15px;color:var(--texto2);margin-top:3px}
+.papel{margin:44px auto 0;max-width:420px;background:#FFFDF6;border-radius:6px;padding:26px 26px 22px;box-shadow:0 18px 40px rgba(59,42,32,.14);transform:rotate(-2deg);position:relative;background-image:repeating-linear-gradient(transparent 0 31px,#E9DDCB 31px 32px);font-family:Caveat,"Segoe Print","Bradley Hand",cursive;color:#3A4A7A;font-size:23px;line-height:32px}
+.papel::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(3deg);width:110px;height:26px;background:rgba(253,190,147,.75)}
+.papel s{color:#B04A4A}
+.papel-leg{text-align:center;font-size:14px;color:var(--texto2);margin-top:22px}
+
+/* CONSEQUÊNCIA */
+.consultorio{margin-top:40px;display:grid;gap:12px;max-width:620px;margin-left:auto;margin-right:auto}
+.msg{max-width:86%;padding:13px 17px;border-radius:20px;font-size:15.5px;line-height:1.45}
+.msg.ped{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-bottom-left-radius:6px;color:#E8E3F4}
+.msg.mae{background:var(--laranja);color:#fff;margin-left:auto;border-bottom-right-radius:6px}
+.msg small{display:block;font-size:11.5px;opacity:.7;margin-bottom:2px;letter-spacing:.5px}
+.custos{margin-top:52px;display:grid;gap:14px}
+.custos div{background:rgba(255,255,255,.05);border:1px solid rgba(253,190,147,.2);border-radius:18px;padding:20px}
+.custos b{display:block;color:#fff;font-family:Lora;font-size:20px;font-weight:600;margin-bottom:4px}
+.custos p{color:#C9C3DE;font-size:15.5px}
+.frase-dura{margin-top:44px;font-family:Lora;font-style:italic;font-size:clamp(22px,4.6vw,30px);line-height:1.35;color:#fff;border-left:4px solid var(--laranja);padding-left:20px}
+
+/* INVALIDAÇÃO */
+.tentativas{margin-top:36px;display:grid;gap:16px}
+.tent{background:#fff;border-radius:var(--raio);padding:24px 22px;border:1px solid var(--borda)}
+.tent .top{display:flex;align-items:center;gap:12px}
+.tent .top span{width:44px;height:44px;border-radius:12px;background:var(--creme2);display:grid;place-items:center;font-size:22px;flex:none}
+.tent h3{font-size:21px}
+.tent p{margin-top:12px;font-size:15.5px;color:var(--texto2)}
+.tent p b{color:var(--laranja)}
+.virada{margin-top:40px;background:var(--madrugada);color:#fff;border-radius:var(--raio);padding:30px 24px;text-align:center}
+.virada p{font-family:Lora;font-size:clamp(22px,4.6vw,30px);line-height:1.35}
+.virada em{color:var(--pessego)}
+
+/* DEMO MADRUGADA */
+.demo-sec .wrap{display:grid;gap:40px;align-items:center}
+.demo{max-width:380px;width:100%;margin:0 auto;background:#0E0F1C;border-radius:40px;padding:10px;box-shadow:0 40px 80px rgba(10,10,30,.5)}
+.tela{background:#0F172A;border-radius:32px;min-height:640px;padding:24px 18px 18px;color:#E2E8F0;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.tela .cab{display:flex;align-items:center;gap:12px;margin-top:14px}
+.tela .cab i{width:44px;height:44px;border-radius:50%;background:#1E293B;display:grid;place-items:center;font-style:normal;font-size:20px}
+.tela .cab b{font-size:18px;color:#fff;display:block;line-height:1.2}
+.tela .cab small{font-size:12px;color:#94A3B8}
+.tela .fala{margin-top:18px;background:#1E293B;border:1px solid #334155;border-radius:18px;padding:12px 14px;font-size:13.5px;color:#CBD5E1}
+.tela h4{font-weight:500;font-size:17px;margin:20px 0 12px;color:#F1F5F9}
+.opcoes{display:grid;gap:9px}
+.op{display:flex;align-items:center;gap:12px;background:#1E293B;border:1px solid #334155;border-radius:16px;padding:13px 14px;color:#F1F5F9;font:inherit;font-size:15px;text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+.op:hover{background:#273449;border-color:#475569}
+.op span{font-size:19px}
+.faca{background:#1E293B;border:1px solid #334155;border-radius:20px;padding:16px;margin-top:18px}
+.faca small{font-size:11.5px;letter-spacing:1.5px;color:#A5B4FC;font-weight:600}
+.faca ol{list-style:none;margin-top:10px;display:grid;gap:12px;counter-reset:p}
+.faca li{display:flex;gap:12px;font-size:15px;line-height:1.45;color:#F1F5F9;counter-increment:p}
+.faca li::before{content:counter(p);flex:none;width:28px;height:28px;border-radius:50%;background:#312E81;color:#C7D2FE;display:grid;place-items:center;font-size:13px;font-weight:600}
+.apoio{margin-top:14px;font-size:13.5px;color:#FDA4AF;font-style:italic;display:flex;gap:8px}
+.tela .acoes{margin-top:auto;display:grid;gap:8px;padding-top:16px}
+.tela .btn-rosa{background:var(--rosa);color:#fff;border:0;border-radius:18px;padding:14px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.tela .btn-vol{background:transparent;color:#94A3B8;border:0;font:inherit;font-size:14px;cursor:pointer;padding:6px}
+.fade-in{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}}
+.demo-txt ul{list-style:none;margin-top:20px;display:grid;gap:12px}
+.demo-txt li{display:flex;gap:12px;font-size:16px}
+.demo-txt li i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--laranja);color:#fff;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;margin-top:1px}
+.dica-demo{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;color:var(--pessego);background:rgba(253,190,147,.1);border-radius:30px;padding:8px 16px}
+
+/* RECURSOS */
+.recursos{margin-top:48px;display:grid;gap:64px}
+.rec{display:grid;gap:26px;align-items:center}
+.rec .cel{max-width:270px;width:72%;margin:0 auto}
+.rec .tag{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--laranja);background:#FFEDE2;border-radius:20px;padding:4px 12px}
+.rec h3{font-size:clamp(25px,5vw,34px);margin-top:12px}
+.rec p{color:var(--texto2);margin-top:12px}
+.rec ul{list-style:none;margin-top:14px;display:grid;gap:8px}
+.rec li{font-size:15.5px;padding-left:28px;position:relative}
+.rec li::before{content:"";position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:var(--laranja) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.2 2.2 4.8-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.dor-tag{display:block;font-family:Lora;font-style:italic;font-size:18px;color:var(--texto);margin-top:16px;padding:12px 16px;background:var(--creme2);border-radius:14px}
+
+.galeria{margin-top:70px}
+.trilho{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 22px;margin:28px -20px 0;scrollbar-width:thin}
+.trilho::-webkit-scrollbar{height:6px}.trilho::-webkit-scrollbar-thumb{background:var(--pessego);border-radius:6px}
+.g-item{flex:none;width:62%;max-width:240px;scroll-snap-align:start}
+.g-item .cel{padding:6px;border-radius:28px}.g-item .cel img{border-radius:23px}.g-item .cel::before{top:12px;height:12px}
+.g-item b{display:block;font-family:Lora;font-size:18px;margin-top:14px}
+.g-item p{font-size:14px;color:var(--texto2);margin-top:2px;line-height:1.45}
+.ilustr{font-size:12.5px;color:var(--texto2);margin-top:6px}
+
+/* RECEBE / OFERTA */
+.oferta{padding:84px 0}
+.caixa{max-width:580px;margin:0 auto;background:#fff;color:var(--texto);border-radius:30px;padding:32px 22px;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative}
+.caixa .fita{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--pessego);color:var(--madrugada);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:7px 18px;border-radius:30px;white-space:nowrap}
+.caixa-top{display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px dashed #EBD3C2}
+.caixa-top img{width:58px;height:58px}
+.caixa-top b{font-family:Lora;font-size:23px;line-height:1.15;display:block}
+.caixa-top span{font-size:13.5px;color:var(--texto2)}
+.lista{list-style:none;margin:20px 0;display:grid;gap:11px}
+.lista li{font-size:15.5px;padding-left:30px;position:relative;line-height:1.45}
+.lista li::before{content:"";position:absolute;left:0;top:3px;width:19px;height:19px;border-radius:50%;background:var(--laranja) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.2 2.2 4.8-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/19px no-repeat}
+.lista li b{font-weight:600}
+.lista li.bonus::before{background-color:var(--rosa)}
+.lista .sub{display:block;font-size:13.5px;color:var(--texto2)}
+.preco{text-align:center;padding:20px 0 4px;border-top:1px dashed #EBD3C2}
+.preco small{display:block;font-size:14px;color:var(--texto2)}
+.preco strong{display:block;font-family:Lora;font-size:64px;line-height:1;margin:6px 0 4px}
+.preco strong sup{font-size:26px;vertical-align:28px;margin-right:4px}
+.preco .comp{font-size:14.5px;color:var(--texto2)}
+.caixa .cta{width:100%;margin-top:18px}
+.pagamento{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pagamento span{font-size:12.5px;font-weight:600;color:var(--texto2);background:var(--creme);border:1px solid #EBD3C2;border-radius:8px;padding:5px 10px}
+.seguro{text-align:center;font-size:13px;color:var(--texto2);margin-top:12px}
+
+.paraquem{display:grid;gap:16px;margin-top:34px}
+.pq{border-radius:22px;padding:24px 22px}
+.pq.sim{background:#fff;border:2px solid var(--laranja)}
+.pq.nao{background:var(--creme2)}
+.pq h3{font-size:21px;margin-bottom:12px}
+.pq ul{list-style:none;display:grid;gap:10px}
+.pq li{display:flex;gap:10px;font-size:15.5px;line-height:1.5}
+.pq li i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:700;margin-top:1px}
+.pq.sim li i{background:var(--laranja);color:#fff}
+.pq.nao li i{background:#E8D5C6;color:var(--texto2)}
+
+.garantia{display:grid;gap:24px;align-items:center;background:#fff;border-radius:28px;padding:30px 24px;border:1px solid var(--borda)}
+.escudo{width:130px;height:130px;margin:0 auto;position:relative}
+.escudo b{position:absolute;inset:0;display:grid;place-items:center;font-family:Lora;color:#fff;font-size:44px;line-height:.9;text-align:center;padding-top:6px}
+.escudo b small{display:block;font-family:Poppins;font-size:12px;font-weight:600;letter-spacing:2px}
+.garantia h3{font-size:clamp(25px,5vw,32px)}
+.garantia p{color:var(--texto2);margin-top:10px}
+
+.faq{margin-top:34px;display:grid;gap:12px}
+.faq details{background:#fff;border-radius:18px;border:1px solid var(--borda);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 54px 18px 20px;font-weight:600;font-size:16px;position:relative;line-height:1.45}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--creme2);color:var(--laranja);display:grid;place-items:center;font-size:20px;transition:transform .25s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{padding:0 20px 20px;color:var(--texto2);font-size:15.5px}
+
+.final{padding:84px 0 96px;text-align:center}
+.final h2{font-size:clamp(30px,6.4vw,48px)}
+.final .lead{max-width:620px;margin-left:auto;margin-right:auto}
+.final .cta{margin-top:32px}
+.final .cta-info{justify-content:center}
+footer{background:#14152A;color:#A9A3C0;font-size:13px;padding:36px 0 110px;text-align:center}
+footer img{width:56px;margin:0 auto 10px}
+footer p+p{margin-top:8px}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);box-shadow:0 -8px 30px rgba(27,29,51,.2);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .35s ease}
+.barra.on{transform:none}
+.barra .p{line-height:1.15}
+.barra .p small{display:block;font-size:11.5px;color:var(--texto2)}
+.barra .p b{font-family:Lora;font-size:22px}
+.barra .cta{flex:1;padding:14px 16px;font-size:15.5px}
+
+.rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rev.vis{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rev{opacity:1;transform:none}}
+
+@media (min-width:860px){
+  body{font-size:18px}
+  section{padding:104px 0}
+  .wrap{padding:0 32px}
+  .hero{padding:64px 0 100px}
+  .hero .wrap{grid-template-columns:1.1fr .9fr;gap:40px}
+  .hero .cta{width:auto}
+  .hero-visual{height:640px;max-width:480px}
+  .dores{grid-template-columns:1fr 1fr}
+  .custos{grid-template-columns:repeat(3,1fr)}
+  .tentativas{grid-template-columns:1fr 1fr}
+  .demo-sec .wrap{grid-template-columns:.95fr 1.05fr;gap:64px}
+  .rec{grid-template-columns:1fr 1fr;gap:64px}
+  .rec:nth-child(even) .cel{order:2}
+  .rec .cel{width:300px;max-width:300px}
+  .trilho{margin:28px 0 0;padding:6px 0 22px}
+  .g-item{width:230px}
+  .paraquem{grid-template-columns:1.2fr .8fr}
+  .caixa{padding:42px 42px}
+  .garantia{grid-template-columns:180px 1fr;padding:40px 48px}
+  .escudo{width:160px;height:160px}
+  .barra{display:none}
+  footer{padding-bottom:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="aviso">App direto no navegador do celular · Para bebês de 0 a 12 meses · Sem baixar nada</div>
+
+<header>
+  <div class="wrap">
+    <a class="marca" href="#topo" aria-label="Mamãe e Bebê">
+      <img src="assets/logo.png" alt="Logo Mamãe e Bebê" width="46" height="46">
+      <span><b>Noites Tranquilas</b><small>o app da Mamãe e Bebê</small></span>
+    </a>
+    <a class="btn-head js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="header">Quero o app</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero escuro" id="topo">
+  <span class="estrela" style="left:7%;top:10%;width:3px;height:3px"></span>
+  <span class="estrela" style="left:44%;top:6%;width:2px;height:2px;animation-delay:-1s"></span>
+  <span class="estrela" style="left:90%;top:14%;width:3px;height:3px;animation-delay:-2s"></span>
+  <span class="estrela" style="left:24%;top:92%;width:2px;height:2px;animation-delay:-3s"></span>
+  <div class="wrap">
+    <div>
+      <div class="hora"><b id="relogio">03:07</b> o bebê acordou de novo</div>
+      <h1>Às 3h da manhã, você não precisa <em>adivinhar o que fazer.</em></h1>
+      <p class="lead">O <b>Noites Tranquilas</b> é o app da Mamãe e Bebê que te diz, passo a passo, o que fazer quando o bebê acorda de madrugada. E guarda a rotina dele num só lugar: <b>mamadas, sonecas, diário e vacinas.</b></p>
+      <a class="cta pulsa js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="hero">
+        Quero noites mais tranquilas
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="cta-info"><span>✓ R$ 47,90, pagamento único</span><span>✓ Acesso na hora</span><span>✓ Garantia de 7 dias</span></div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="cel tras"><img src="assets/tela-rotina.webp" alt=""></div>
+      <div class="cel frente"><img src="assets/tela-madrugada-faca-agora.webp" alt=""></div>
+      <div class="balao b1"><b>Faça agora</b>Aproxime-se sem pegar no colo de imediato. Toque suave no peito.</div>
+      <div class="balao b2"><b>Pra você, mãe</b>Ele não está te testando. Ele só precisa de você.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ G — PROBLEMA ============ -->
+<section id="problema">
+  <div class="wrap">
+    <div class="estreito centro">
+      <span class="selo rev">Você conhece essa cena</span>
+      <h2 class="rev">O bebê chorando no colo. <em>E você digitando no escuro.</em></h2>
+      <p class="lead rev">Com uma mão você nina. Com a outra, pesquisa no celular, com o brilho no mínimo pra não acordar ninguém.</p>
+    </div>
+    <div class="busca rev" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#F95204" stroke-width="2.4"/><path d="M20 20l-4-4" stroke="#F95204" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span id="digita"></span>
+    </div>
+    <p class="busca-legenda rev">Mais de 10 abas abertas. Cada uma diz uma coisa diferente.</p>
+
+    <div class="dores">
+      <div class="dor rev"><span class="ic">🕒</span><div><b>"Que horas ele mamou mesmo?"</b><p>Você não lembra se foi às 2h ou às 3h, nem de qual peito.</p></div></div>
+      <div class="dor rev"><span class="ic">📝</span><div><b>Anotações espalhadas</b><p>Um pouco no caderno, um pouco no bloco de notas, um pouco na sua cabeça cansada.</p></div></div>
+      <div class="dor rev"><span class="ic">😴</span><div><b>Soneca? Que soneca?</b><p>Você não sabe se ele está dormindo pouco, demais ou na hora errada.</p></div></div>
+      <div class="dor rev"><span class="ic">💉</span><div><b>A carteirinha de vacina na gaveta</b><p>E a dúvida de qual é a próxima vacina e quando ela é.</p></div></div>
+    </div>
+
+    <div class="papel rev" aria-hidden="true">
+      mamou <s>2h</s> 2h40? peito esq.<br>
+      acordou 1h... e 3h... e 4h?<br>
+      cocô verde?? perguntar pediatra<br>
+      soneca 15h → 15h20 (só?)
+    </div>
+    <p class="papel-leg rev">Se o seu caderninho parece com esse, continue lendo.</p>
+  </div>
+</section>
+
+<!-- ============ O — CONSEQUÊNCIA ============ -->
+<section class="escuro" id="consequencia">
+  <span class="estrela" style="left:12%;top:6%;width:3px;height:3px"></span>
+  <span class="estrela" style="left:82%;top:12%;width:2px;height:2px;animation-delay:-2s"></span>
+  <div class="wrap">
+    <div class="estreito centro">
+      <span class="selo rev">O que isso custa</span>
+      <h2 class="rev">E aí chega o dia da consulta <em>com o pediatra.</em></h2>
+    </div>
+    <div class="consultorio">
+      <div class="msg ped rev"><small>PEDIATRA</small>Quantas vezes ele mamou ontem?</div>
+      <div class="msg mae rev"><small>VOCÊ</small>Acho que umas seis… ou oito?</div>
+      <div class="msg ped rev"><small>PEDIATRA</small>E de madrugada, ele acorda quantas vezes?</div>
+      <div class="msg mae rev"><small>VOCÊ</small>Muitas. Não sei dizer direito.</div>
+      <div class="msg ped rev"><small>PEDIATRA</small>Está dormindo quantas sonecas por dia?</div>
+      <div class="msg mae rev"><small>VOCÊ</small>…</div>
+    </div>
+
+    <div class="custos estreito">
+      <div class="rev"><b>A consulta rende pouco</b><p>Você sai do consultório com a sensação de que esqueceu de perguntar o mais importante.</p></div>
+      <div class="rev"><b>A madrugada vira loteria</b><p>Cada vez que ele acorda, você tenta uma coisa diferente. Às vezes funciona, às vezes não, e você nunca sabe por quê.</p></div>
+      <div class="rev"><b>Os momentos passam</b><p>O primeiro sorriso, o dia que rolou sozinho. Você jura que vai lembrar, e a memória se mistura com o cansaço.</p></div>
+    </div>
+
+    <p class="frase-dura estreito rev">Você não está fazendo nada errado. Você está tentando lembrar de tudo sozinha, sem dormir.</p>
+  </div>
+</section>
+
+<!-- ============ A — INVALIDAÇÃO ============ -->
+<section id="tentativas">
+  <div class="wrap">
+    <div class="estreito centro">
+      <span class="selo rev">O que você já tentou</span>
+      <h2 class="rev">Por que nada disso <em>resolveu de verdade</em></h2>
+      <p class="lead rev">Não é falta de esforço. É que nenhuma dessas opções foi feita para uma mãe às 3h da manhã.</p>
+    </div>
+    <div class="tentativas">
+      <div class="tent rev"><div class="top"><span>🔎</span><h3>Google e Instagram</h3></div><p><b>O problema:</b> cada perfil fala uma coisa. Você lê 10 respostas, fica mais confusa e mais acordada, com a tela branca na cara.</p></div>
+      <div class="tent rev"><div class="top"><span>📓</span><h3>O caderninho</h3></div><p><b>O problema:</b> não dá pra ler no escuro, some na bolsa, não soma nada sozinho e não te diz o que fazer quando o bebê chora.</p></div>
+      <div class="tent rev"><div class="top"><span>💬</span><h3>O grupo da família</h3></div><p><b>O problema:</b> todo mundo opina, cada um de um jeito. E às 3h da manhã, ninguém está acordado para responder.</p></div>
+      <div class="tent rev"><div class="top"><span>📱</span><h3>App de anotação comum</h3></div><p><b>O problema:</b> ele até guarda os horários, mas não te acalma, não te orienta e não conhece o sono do bebê.</p></div>
+    </div>
+    <div class="virada rev">
+      <p>Você não precisa de mais informação. <em>Você precisa da resposta certa, na hora certa,</em> e de um lugar que lembre de tudo por você.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ L — SOLUÇÃO: DEMO ============ -->
+<section class="escuro demo-sec" id="solucao">
+  <span class="estrela" style="left:6%;top:12%;width:3px;height:3px"></span>
+  <span class="estrela" style="left:92%;top:80%;width:3px;height:3px;animation-delay:-1s"></span>
+  <div class="wrap">
+    <div class="demo-txt">
+      <span class="selo rev">A solução</span>
+      <h2 class="rev">Conheça o <em>Noites Tranquilas</em></h2>
+      <p class="lead rev">O primeiro recurso que você vai usar é o <b style="color:#fff">Modo Madrugada</b>. Tela escura, letra grande, e uma pergunta simples: <b style="color:#fff">"o que está acontecendo agora?"</b></p>
+      <ul class="rev">
+        <li><i>1</i>Você toca no que o bebê está fazendo</li>
+        <li><i>2</i>O app faz mais uma pergunta para entender melhor</li>
+        <li><i>3</i>Você recebe 3 passos claros para fazer agora</li>
+      </ul>
+      <span class="dica-demo rev">👉 Experimente aqui ao lado, igualzinho no app</span>
+    </div>
+
+    <div class="demo rev" aria-label="Demonstração do Modo Madrugada">
+      <div class="tela" id="tela"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECURSOS ============ -->
+<section id="recursos" style="background:#fff">
+  <div class="wrap">
+    <div class="estreito centro">
+      <span class="selo rev">Tudo num só lugar</span>
+      <h2 class="rev">A rotina do seu bebê, <em>organizada sem esforço</em></h2>
+      <p class="lead rev">Telas reais do app. Os nomes e números são de exemplo.</p>
+    </div>
+
+    <div class="recursos">
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-rotina.webp" alt="Tela da Rotina Inteligente" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">Rotina Inteligente</span>
+          <h3>Saiba a hora da <em>próxima soneca</em> antes do choro</h3>
+          <p>Você informa a idade e a hora que o bebê acordou. O app monta a linha do tempo do dia com as sonecas e a hora de dormir, e mostra quanto falta para a próxima.</p>
+          <ul><li>Botões "Acordou agora" e "Dormiu agora"</li><li>Dicas para a fase do seu bebê</li></ul>
+          <span class="dor-tag">Chega de perceber o sono só quando ele já está chorando de cansaço.</span>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-mamadas.webp" alt="Tela de registro de mamadas" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">Mamadas</span>
+          <h3>Nunca mais <em>"de que peito foi?"</em></h3>
+          <p>Registre cada mamada em segundos: horário, peito esquerdo, direito, fórmula ou mista, e quanto tempo durou. O app mostra quantas foram hoje e há quanto tempo foi a última.</p>
+          <ul><li>Contador de mamadas do dia</li><li>Espaço para observações, como "120 ml"</li></ul>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-painel.webp" alt="Tela Meu Painel" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">Meu Painel</span>
+          <h3>Chegue no pediatra <em>com as respostas na mão</em></h3>
+          <p>Tudo o que você registrou vira números simples: despertares da madrugada, mamadas do dia, intervalo entre elas e a sua semana de progresso.</p>
+          <ul><li>Padrão da madrugada dos últimos 14 dias</li><li>Gráfico da semana e do seu humor</li></ul>
+          <span class="dor-tag">"Quantas vezes ele mamou?" Agora você abre o app e mostra.</span>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-diario.webp" alt="Tela do Diário da Mamãe" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">Diário da Mamãe</span>
+          <h3>Um espaço <em>só seu</em>, no fim de cada noite</h3>
+          <p>Perguntas curtas para você anotar quantas vezes ele acordou, o que funcionou, como você se sentiu e pelo que é grata hoje. Fica salvo na nuvem.</p>
+          <span class="dor-tag">Porque cuidar de quem cuida também faz parte.</span>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-vacinas.webp" alt="Tela da Carteirinha de Vacinas" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">Carteirinha de Vacinas</span>
+          <h3>As vacinas do primeiro ano, <em>marcadas uma a uma</em></h3>
+          <p>18 vacinas listadas com a idade de cada uma. Você marca a que o bebê tomou e acompanha quantas faltam.</p>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="cel rev"><img src="assets/tela-historia.webp" alt="Tela A história do bebê" loading="lazy"></div>
+        <div class="rev">
+          <span class="tag">A história do bebê</span>
+          <h3>O primeiro sorriso <em>não vai se perder</em></h3>
+          <p>Guarde cada momento com data, um emoji e uma frase curta. Em poucos meses, você tem a linha do tempo do primeiro ano dele.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="galeria">
+      <div class="estreito centro">
+        <span class="selo rev">E ainda tem mais</span>
+        <h3 class="rev" style="font-size:clamp(26px,5vw,36px)">Conteúdo para quando <em>bater a dúvida</em></h3>
+      </div>
+      <div class="trilho">
+        <div class="g-item"><div class="cel"><img src="assets/tela-berco.webp" alt="Tela Berço Sem Choro" loading="lazy"></div><b>Berço Sem Choro</b><p>Um método gradual em 6 fases para sair do colo e chegar ao berço.</p></div>
+        <div class="g-item"><div class="cel"><img src="assets/tela-capitulos.webp" alt="Tela de Capítulos" loading="lazy"></div><b>10 capítulos</b><p>Fases do sono, rotina, ambiente, regressões e erros comuns, com checklist.</p></div>
+        <div class="g-item"><div class="cel"><img src="assets/tela-hora-da-bruxa.webp" alt="Tela Hora da Bruxa" loading="lazy"></div><b>Hora da Bruxa</b><p>Por que o fim da tarde é tão difícil e o que fazer nesse horário.</p></div>
+        <div class="g-item"><div class="cel"><img src="assets/tela-semanal.webp" alt="Tela Acompanhamento Semanal" loading="lazy"></div><b>Acompanhamento semanal</b><p>Marque as conquistas de cada dia e veja a semana evoluir.</p></div>
+        <div class="g-item"><div class="cel"><img src="assets/tela-bonus.webp" alt="Tela de Bônus" loading="lazy"></div><b>Bônus</b><p>Planner do Sono para imprimir e músicas para o bebê dormir.</p></div>
+      </div>
+      <p class="ilustr">Arraste para o lado →</p>
+    </div>
+
+    <div class="centro" style="margin-top:48px">
+      <a class="cta js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="recursos">Quero o Noites Tranquilas
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="cta-info" style="justify-content:center"><span>✓ R$ 47,90 · pagamento único</span><span>✓ Pix, cartão ou PicPay</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARA QUEM ============ -->
+<section id="paraquem">
+  <div class="wrap">
+    <div class="estreito centro">
+      <span class="selo rev">Antes de comprar</span>
+      <h2 class="rev">O app é <em>para você?</em></h2>
+    </div>
+    <div class="paraquem">
+      <div class="pq sim rev">
+        <h3>É para você se…</h3>
+        <ul>
+          <li><i>✓</i>Seu bebê tem de 0 a 12 meses</li>
+          <li><i>✓</i>Você acorda de madrugada sem saber se é fome, cólica ou só sono</li>
+          <li><i>✓</i>Você quer parar de anotar tudo no papel e chegar no pediatra com as respostas</li>
+          <li><i>✓</i>Você é mãe de primeira viagem e quer uma rotina para o bebê, sem rigidez</li>
+          <li><i>✓</i>Você passa o dia no celular procurando dicas e quer tudo num lugar só</li>
+        </ul>
+      </div>
+      <div class="pq nao rev">
+        <h3>Não é para você se…</h3>
+        <ul>
+          <li><i>✕</i>Você procura algo que substitua o pediatra</li>
+          <li><i>✕</i>Você quer um app para baixar na loja (ele abre pelo navegador)</li>
+          <li><i>✕</i>Seu filho já passou de 1 ano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFERTA ============ -->
+<section class="oferta escuro" id="oferta">
+  <span class="estrela" style="left:10%;top:10%;width:3px;height:3px"></span>
+  <span class="estrela" style="left:86%;top:22%;width:3px;height:3px;animation-delay:-2s"></span>
+  <div class="wrap">
+    <div class="centro" style="margin-bottom:46px">
+      <span class="selo rev">O que você recebe</span>
+      <h2 class="rev">Tudo isso por menos que <em>uma consulta particular</em></h2>
+    </div>
+    <div class="caixa rev">
+      <span class="fita">Acesso imediato</span>
+      <div class="caixa-top">
+        <img src="assets/logo.png" alt="">
+        <div><b>Noites Tranquilas</b><span>O app da Mamãe e Bebê · bebês de 0 a 12 meses</span></div>
+      </div>
+      <ul class="lista">
+        <li><b>Modo Madrugada</b><span class="sub">O que fazer agora, passo a passo, quando o bebê acorda</span></li>
+        <li><b>Rotina Inteligente</b><span class="sub">Próxima soneca e hora de dormir para a idade dele</span></li>
+        <li><b>Registro de mamadas</b><span class="sub">Horário, peito ou fórmula e duração</span></li>
+        <li><b>Meu Painel</b><span class="sub">Madrugadas, mamadas e progresso da semana em números</span></li>
+        <li><b>Diário da Mamãe</b> e <b>A história do bebê</b></li>
+        <li><b>Carteirinha de Vacinas</b> do primeiro ano</li>
+        <li><b>Berço Sem Choro</b>, <b>Hora da Bruxa</b> e <b>10 capítulos</b> sobre o sono</li>
+        <li class="bonus"><b>Bônus:</b> Planner do Sono para imprimir e músicas para dormir</li>
+      </ul>
+      <div class="preco">
+        <small>Pagamento único, sem mensalidade</small>
+        <strong><sup>R$</sup>47,90</strong>
+        <span class="comp">Menos de R$ 0,14 por dia durante o primeiro ano do bebê</span>
+      </div>
+      <a class="cta pulsa js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="oferta">Quero o Noites Tranquilas
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="pagamento"><span>Pix</span><span>Cartão de crédito</span><span>PicPay</span></div>
+      <p class="seguro">🔒 Compra segura pela Cakto · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GARANTIA ============ -->
+<section id="garantia">
+  <div class="wrap estreito">
+    <div class="garantia rev">
+      <div class="escudo">
+        <svg viewBox="0 0 100 110" width="100%" height="100%"><defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FA870D"/><stop offset="1" stop-color="#F95204"/></linearGradient></defs><path d="M50 4l42 15v32c0 27-18 45-42 55C26 96 8 78 8 51V19z" fill="url(#gg)"/></svg>
+        <b>7<small>DIAS</small></b>
+      </div>
+      <div>
+        <h3>Use o app por 7 dias. <em>O risco é nosso.</em></h3>
+        <p>Registre as mamadas, use o Modo Madrugada, monte a rotina. Se achar que o app não é para você, peça o reembolso dentro de 7 dias e você recebe 100% do valor de volta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="duvidas" style="background:#fff">
+  <div class="wrap estreito">
+    <div class="centro">
+      <span class="selo rev">Dúvidas comuns</span>
+      <h2 class="rev">Antes que você <em>pergunte</em></h2>
+    </div>
+    <div class="faq">
+      <details class="rev"><summary>Preciso baixar alguma coisa?</summary><p>Não. O Noites Tranquilas abre direto no navegador do celular, como um site. Você entra com o seu e-mail ou com a sua conta Google e já começa a usar.</p></details>
+      <details class="rev"><summary>Funciona no meu celular?</summary><p>Funciona em qualquer celular com navegador atualizado, Android ou iPhone. Também dá para abrir no computador.</p></details>
+      <details class="rev"><summary>Preciso de internet?</summary><p>Sim. O app funciona online e salva os seus registros na nuvem, então você não perde nada se trocar de celular.</p></details>
+      <details class="rev"><summary>Para qual idade é?</summary><p>Para bebês de 0 a 12 meses. A Rotina Inteligente e as dicas se ajustam à idade que você informar.</p></details>
+      <details class="rev"><summary>Como recebo o acesso?</summary><p>Depois que o pagamento é aprovado, o acesso é liberado para o e-mail que você usou na compra. Entre no app com esse mesmo e-mail. No Pix e no cartão, a aprovação costuma ser na hora.</p></details>
+      <details class="rev"><summary>Tem mensalidade?</summary><p>Não. Você paga R$ 47,90 uma vez só.</p></details>
+      <details class="rev"><summary>O app substitui o pediatra?</summary><p>Não. O app organiza a rotina e traz orientações gerais. Se o bebê tiver febre, dificuldade para respirar ou um choro diferente do normal, procure o pediatra.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section class="final escuro">
+  <span class="estrela" style="left:14%;top:16%;width:3px;height:3px"></span>
+  <span class="estrela" style="left:82%;top:24%;width:3px;height:3px;animation-delay:-2s"></span>
+  <span class="estrela" style="left:60%;top:86%;width:2px;height:2px;animation-delay:-1s"></span>
+  <div class="wrap">
+    <img src="assets/logo-branca.png" alt="" width="84" height="84" style="margin:0 auto 18px" loading="lazy">
+    <h2 class="rev">Hoje à noite ele vai acordar. <em>Você vai saber o que fazer?</em></h2>
+    <p class="lead rev">A próxima madrugada pode ser mais uma noite pesquisando no escuro, ou a primeira com o Modo Madrugada aberto na sua mão.</p>
+    <a class="cta pulsa js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="final">Quero o app agora
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div class="cta-info"><span>✓ R$ 47,90</span><span>✓ Acesso na hora</span><span>✓ Garantia de 7 dias</span></div>
+  </div>
+</section>
+
+<footer>
+  <img src="assets/logo-branca.png" alt="Mamãe e Bebê" loading="lazy">
+  <p><b style="color:#fff">Mamãe e Bebê</b> · Noites Tranquilas</p>
+  <p>O app traz orientações gerais e não substitui o acompanhamento do pediatra.</p>
+  <p>© <span id="ano">2026</span> Mamãe e Bebê. Todos os direitos reservados.</p>
+</footer>
+
+<div class="barra" id="barra">
+  <div class="p"><small>Pagamento único</small><b>R$ 47,90</b></div>
+  <a class="cta js-checkout" href="https://pay.cakto.com.br/jrwy8j6_1191195" data-local="barra-fixa">Quero o app</a>
+</div>
+
+<script>
+(function(){
+  var CHECKOUT = 'https://pay.cakto.com.br/jrwy8j6_1191195';
+  var VALOR = 47.90, NOME = 'Noites Tranquilas — App Mamãe e Bebê';
+  var track = function(){ if (window.fbq) { try { fbq.apply(null, arguments); } catch(e){} } };
+
+  // UTMs e fbclid do anúncio seguem para o checkout
+  var q = window.location.search;
+  var url = CHECKOUT + (q ? (CHECKOUT.indexOf('?') > -1 ? '&' + q.slice(1) : q) : '');
+  document.querySelectorAll('.js-checkout').forEach(function(a){
+    a.href = url;
+    a.addEventListener('click', function(){
+      track('track','InitiateCheckout',{ value: VALOR, currency: 'BRL', content_name: NOME, content_category: a.getAttribute('data-local') });
+    });
+  });
+
+  // Busca digitando sozinha (problema)
+  var buscas = [
+    'por que meu bebê acorda de madrugada chorando',
+    'bebê acordou 3h e não volta a dormir',
+    'como saber se é fome ou cólica',
+    'quantas sonecas bebê de 5 meses',
+    'bebê só dorme no colo o que fazer'
+  ];
+  var alvo = document.getElementById('digita'), bi = 0, ci = 0, apagando = false;
+  (function tick(){
+    var t = buscas[bi];
+    if (!apagando) { ci++; alvo.textContent = t.slice(0, ci); if (ci === t.length) { apagando = true; return setTimeout(tick, 1600); } }
+    else { ci -= 3; if (ci <= 0) { ci = 0; apagando = false; bi = (bi + 1) % buscas.length; } alvo.textContent = t.slice(0, ci); }
+    setTimeout(tick, apagando ? 22 : 55);
+  })();
+
+  // ===== Demonstração do Modo Madrugada (conteúdo real do app) =====
+  var ISSUES = [
+    { k:'crying', e:'😢', l:'Chorando sem parar' },
+    { k:'awake',  e:'😴', l:'Acordou e não volta a dormir' },
+    { k:'feed',   e:'🤱', l:'Quer mamar toda hora' },
+    { k:'colic',  e:'😣', l:'Parece cólica' },
+    { k:'unknown',e:'❓', l:'Não sei o que fazer' }
+  ];
+  var FOLLOW = {
+    crying: { q:'Como é esse choro agora?', o:[['forte','🔊','Forte e contínuo'],['manhoso','😮‍💨','Manhoso, em ciclos'],['agudo','⚡','Agudo, do nada'],['cansado','😩','Parece cansaço']] },
+    awake:  { q:'Ele está como agora?', o:[['agitado','🌀','Inquieto, se mexendo muito'],['olhando','👀','Quietinho, só de olho aberto'],['resmungando','😶','Resmungando baixinho'],['brincando','🙃','Querendo brincar']] },
+    feed:   { q:'Faz quanto tempo da última mamada?', o:[['menos1','⏱️','Menos de 1 hora'],['1a2','🕐','Entre 1 e 2 horas'],['2a3','🕑','Entre 2 e 3 horas'],['mais3','🕒','Mais de 3 horas']] },
+    colic:  { q:'O que você está observando?', o:[['pernas','🦵','Encolhe as perninhas'],['barriga','🎈','Barriga durinha'],['puns','💨','Soltando puns'],['apos','🍼','Começou após mamar']] },
+    unknown:{ q:'Vamos investigar juntas. Você já checou?', o:[['fralda','🧷','Fralda — está cheia?'],['temp','🌡️','Temperatura do quarto'],['roupa','👕','Roupa apertando ou áspera'],['fome','🍼','Hora de mamar de novo?']] }
+  };
+  var STEPS = {
+    forte:['Pegue no colo e encoste o ouvido dele no seu peito — o batimento acalma','Faça "shhhh" bem perto, alto o suficiente pra cobrir o choro','Caminhe devagar pelo quarto com balanço firme, não muito leve'],
+    manhoso:['Aproxime-se sem pegar no colo de imediato — toque suave no peito','Cantarole baixinho ou repita uma palavra calma','Se em 2-3 min não passar, então pegue no colo'],
+    agudo:['Verifique mãozinhas, pés e o pescoço (cabelo enrolado em dedinho dói muito)','Cheque a fralda e se algo está apertando','Coloque pele a pele e observe se acalma em 1-2 min'],
+    cansado:['Diminua todos os estímulos: luz quase zero e silêncio','Embale com ritmo bem constante, não pare quando ele chorar mais forte','Resista a falar — só presença e movimento'],
+    agitado:['Envolva no cueiro firme (se tiver menos de 4 meses)','Coloque a mão no peitinho dele com leve pressão por 1 minuto','"Shhhh" longo e ritmado, no compasso da respiração'],
+    olhando:['Não faça contato visual — finja que ainda dorme','Fique deitada por perto sem interagir','Em geral, em 10-15 min ele volta a dormir sozinho'],
+    resmungando:['Espere 2-3 minutos antes de intervir — pode ser sono leve','Se aumentar, coloque a mão e faça "shhhh" sem pegar no colo','Só pegue se realmente começar a chorar de verdade'],
+    brincando:['Mantenha o quarto escuro, sem brincar de volta','Voz neutra: "agora é noite, hora de dormir"','Deite ao lado em silêncio — a falta de estímulo traz o sono'],
+    menos1:['Provavelmente não é fome real — pode ser sucção pra acalmar','Tente chupeta ou seu dedo limpo primeiro','Se recusar e insistir, ofereça o peito por pouco tempo'],
+    '1a2':['Ofereça o peito ou mamadeira com calma','Mantenha luz baixa pra não desligar o sono dele','Após mamar, espere o arroto antes de deitar'],
+    '2a3':['É um intervalo normal — ofereça mamada completa','Aproveite pra trocar fralda só se estiver muito cheia','Coloque pra arrotar e devolva ao berço sonolento, não dormindo'],
+    mais3:['É fome de verdade — ofereça mamada tranquila e completa','Esvazie um peito antes de oferecer o outro','Após arroto, espere 5 min antes de deitar pra evitar refluxo'],
+    pernas:['Deite ele de costas e faça "bicicleta" com as perninhas devagar','Pressione os joelhos contra a barriga por 5 segundos, 3x','Massagem em "I, L, U" na barriguinha em sentido horário'],
+    barriga:['Posição de bruços apoiado no seu antebraço (posição do tigre)','Compressa morna (não quente!) por cima da roupa, 5 min','Massagem em sentido horário, suave, com óleo morno se tiver'],
+    puns:['Bom sinal — está saindo. Continue o movimento de bicicleta','Mantenha ele aquecido na barriguinha','Aguarde 10-15 min, geralmente passa sozinho'],
+    apos:['Coloque pra arrotar de pé encostado em você por 10 min','Pode ser refluxo — mantenha levemente inclinado, não totalmente deitado','Se vomitar muito ou chorar inconsolável, anote pra contar ao pediatra'],
+    fralda:['Troque mesmo se parecer pouco — pele molhada incomoda','Use creme protetor se a pele estiver vermelha','Aproveite pra checar temperatura corporal no abdome'],
+    temp:['Ideal: entre 20°C e 22°C. Toque a nuca, não as mãos','Se a nuca estiver suada → tirar uma camada','Se estiver fria → adicionar manta leve, sem cobrir o rosto'],
+    roupa:['Cheque etiquetas, costuras, cordões e elásticos apertados','Tire uma camada e veja se acalma','Pijama macio e sem botões nas costas costuma ajudar'],
+    fome:['Ofereça uma mamada curta — se sugar com vontade, era fome','Se recusar logo, não era fome','Após, devolva ao berço sonolento mas acordado']
+  };
+  var APOIO = ['Ele não está te testando. Ele só precisa de você.','Respira fundo. Você não está sozinha.','Cansaço não é fracasso. É amor em ação.','Você é exatamente a mãe que ele precisa nesse momento','Uma noite difícil não define vocês duas'];
+  var tela = document.getElementById('tela'), usou = false;
+  var cab = '<div class="cab"><i>🌙</i><div><b>Modo Madrugada</b><small>Estou aqui com você 💗</small></div></div>';
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function inicio(){
+    tela.innerHTML = cab + '<div class="fala fade-in">💬 Oi, mãe. Respira fundo comigo. Me conta o que tá rolando que a gente resolve juntas.</div>' +
+      '<h4>O que está acontecendo com seu bebê agora?</h4><div class="opcoes fade-in">' +
+      ISSUES.map(function(i){ return '<button class="op" data-i="'+i.k+'"><span>'+i.e+'</span>'+esc(i.l)+'</button>'; }).join('') +
+      '</div><div class="acoes"><button class="btn-rosa" data-i="crying">🔔 Bebê acordou agora</button></div>';
+  }
+  function pergunta(k){
+    var f = FOLLOW[k];
+    tela.innerHTML = cab + '<div class="fala fade-in">💬 Me ajuda a entender melhor — assim eu te dou a dica certa.</div>' +
+      '<h4>'+esc(f.q)+'</h4><div class="opcoes fade-in">' +
+      f.o.map(function(o){ return '<button class="op" data-d="'+o[0]+'"><span>'+o[1]+'</span>'+esc(o[2])+'</button>'; }).join('') +
+      '</div><div class="acoes"><button class="btn-vol" data-v="1">← Voltar</button></div>';
+  }
+  function passos(d){
+    var s = STEPS[d], a = APOIO[Math.floor(Math.random()*APOIO.length)];
+    tela.innerHTML = cab + '<div class="faca fade-in"><small>FAÇA AGORA</small><ol>' + s.map(function(x){ return '<li>'+esc(x)+'</li>'; }).join('') + '</ol></div>' +
+      '<p class="apoio fade-in">♡ '+esc(a)+'</p>' +
+      '<div class="acoes"><a class="cta js-demo" href="'+url+'" style="font-size:15.5px;padding:15px">Quero isso no meu celular</a><button class="btn-vol" data-v="1">↺ Testar outra situação</button></div>';
+    tela.querySelector('.js-demo').addEventListener('click', function(){ track('track','InitiateCheckout',{ value: VALOR, currency:'BRL', content_name: NOME, content_category:'demo' }); });
+  }
+  tela.addEventListener('click', function(ev){
+    var b = ev.target.closest('button'); if (!b) return;
+    if (!usou) { usou = true; track('trackCustom','DemoMadrugada'); }
+    if (b.dataset.i) pergunta(b.dataset.i);
+    else if (b.dataset.d) passos(b.dataset.d);
+    else if (b.dataset.v) inicio();
+  });
+  inicio();
+
+  // Animação de entrada
+  var obs = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(function(el){ obs.observe(el); });
+
+  // ViewContent na oferta
+  var viu = false, oferta = document.getElementById('oferta');
+  new IntersectionObserver(function(es){
+    if (es[0].isIntersecting && !viu) { viu = true; track('track','ViewContent',{ value: VALOR, currency:'BRL', content_name: NOME }); }
+  }, { threshold: .3 }).observe(oferta);
+
+  // Barra fixa no celular
+  var barra = document.getElementById('barra'), hero = document.getElementById('topo');
+  var visiveis = new Set(), heroFora = false;
+  var atualiza = function(){ barra.classList.toggle('on', heroFora && visiveis.size === 0); };
+  new IntersectionObserver(function(es){ heroFora = !es[0].isIntersecting; atualiza(); }).observe(hero);
+  var o2 = new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? visiveis.add(e.target) : visiveis.delete(e.target); }); atualiza(); }, { threshold: .15 });
+  [oferta, document.querySelector('.final'), document.getElementById('solucao')].forEach(function(el){ o2.observe(el); });
+
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
